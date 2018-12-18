@@ -1,0 +1,15 @@
+/* -- {{ flow_prefix }}_{{ job.index }}_{{ job.stem }}_fw -- */
+ 
+insert_job: {{ flow_prefix }}_{{ job.index }}_{{ job.stem }}_fw    job_type: FW
+machine: {{ job.machine }}
+owner: {{ owner|default('user1') }}
+box_name: {{ flow_prefix }}_00_box
+permission: {{ permission|default('gx') }}
+max_run_alarm: {{ max_run_alarm|default(0) }}
+alarm_if_fail: {{ alarm_if_fail|default('n') }}
+send_notification: {{ send_notification|default('n') }}
+watch_file: ~/files/{{ environment }}/{{ job.data_file_pattern }}
+watch_file_min_size: {{ watch_file_min_size|default(0) }}
+watch_interval: {{ watch_interval|default(60) }}
+
+

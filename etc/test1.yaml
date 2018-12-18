@@ -1,0 +1,37 @@
+### YAML file for testing purposes only.
+
+# yaml_file.py
+
+SectionA:
+  rowA1: a1
+  rowA2: a2
+
+SectionB:
+  rowB1: b1
+  rowB2: b2
+
+# jinja_file.py
+
+
+flow_prefix: test1
+data_supplier: data_supplier1
+environment: prod
+fw_jobs:
+- index: 01
+  stem: 1a
+  machine: host1
+  data_file_pattern: 'test1_a_*.dat.zip'
+- index: 01
+  stem: 1b
+  machine: host1
+  data_file_pattern: 'test1_b_*.dat.zip'
+cmd_jobs:
+- index: 02
+  stem: 1a
+  machine: host1
+  condition: 's(test1_01_a_fw) & s(test1_01_b_fw)'
+- index: 03
+  stem: 1b
+  machine: host2
+  condition': 's(test1_02_1a_cmd)'
+  script': '~/test1.py'

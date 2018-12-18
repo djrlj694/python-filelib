@@ -1,0 +1,7 @@
+{% include './box.jil.jinja' %}
+{%- for job in fw_jobs %}
+{% include './fw.jil.jinja' %}
+{%- endfor %}
+{%- for job in cmd_jobs %}
+{% include './cmd.jil.jinja' %}
+{%- endfor %}

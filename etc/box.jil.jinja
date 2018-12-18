@@ -1,0 +1,10 @@
+/* -- {{ flow_prefix }}_00_box -- */
+ 
+insert_job: {{ flow_prefix }}_00_box    job_type: BOX 
+owner: {{ owner|default('user1') }}
+permission: {{ permission|default('gx') }}
+max_run_alarm: {{ max_run_alarm|default(0) }}
+alarm_if_fail: {{ alarm_if_fail|default('n') }}
+send_notification: {{ send_notification|default('n') }}
+
+

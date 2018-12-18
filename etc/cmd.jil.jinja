@@ -1,0 +1,14 @@
+/* -- {{ flow_prefix }}_{{ job.index }}_{{ job.stem }} -- */
+ 
+insert_job: {{ flow_prefix }}_{{ job.index }}_{{ job.stem }}    job_type: CMD 
+machine: {{ job.machine }}
+condition: {{ condition }}
+owner: {{ owner|default('user1') }}
+box_name: {{ flow_prefix }}_00_box
+permission: {{ permission }}
+max_run_alarm: {{ max_run_alarm }}
+alarm_if_fail: {{ alarm_if_fail }}
+send_notification: {{ send_notification }}
+command: {{ command }}
+
+
