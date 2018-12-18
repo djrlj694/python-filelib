@@ -13,8 +13,8 @@ JINJA(subpath1[, subpath2, ..., dir=dir])
 DESCRIPTION
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 The class "JINJA", a subclass of "File":
-* Encapulates YAML file metadata;
-* Handles YAML file operations.
+* Encapulates JINJA file metadata;
+* Handles JINJA file operations.
 
 EXAMPLES
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -22,7 +22,7 @@ from jinja_file import JINJA
 from yaml_file import YAML
 
 jinja1 = JINJA('test1')
-yaml1 = YAML('pl_quest_onboard_part1', dir='../etc')
+yaml1 = YAML('test1', dir='../etc')
 
 template1 = jinja1.load()
 template1_dict = yaml1.load()
@@ -72,126 +72,149 @@ from yaml_file import YAML
 ### Class Declaration ###
 
 class JINJA(File):
-	'''
-	The class "JINJA", a subclass of "File":
-		* Encapulates JINJA file metadata;
-		* Handles JINJA file operations.
-	
-	Attributes:
-		All attributes are inherited from the parent class "File".
-	'''
+    '''
+    The class "JINJA", a subclass of "File":
+        * Encapulates JINJA file metadata;
+        * Handles JINJA file operations.
+    
+    Attributes:
+        All attributes are inherited from the parent class "File".
+    '''
 
-	def __new__(cls, *args, **kwargs):
-	
-		'''
-		The constructor for the class "JINJA" that exists solely for creating the object.
-		
-		Parameters:
-			args (list): A comma-separated list of arguments representing parts of path.
-			kwargs (dict): An optional comma-separated list of key/value pairs.
-		
-		Returns:
-			JINJA: An uninitialized "YAML" class instance.
-		'''
+    def __new__(cls, *args, **kwargs):
+    
+        '''
+        The constructor for the class "JINJA" that exists solely for creating the object.
+        
+        Parameters:
+            args (list): A comma-separated list of arguments representing parts of path.
+            kwargs (dict): An optional comma-separated list of key/value pairs.
+        
+        Returns:
+            JINJA: An uninitialized "YAML" class instance.
+        '''
 
-		extension = kwargs.get('extension', '.jinja') # The file's extension (e.g., ".jinja")
-		dir = kwargs.get('dir', '')                   # The path (absolute or relative) of the file's parent directory
+        extension = kwargs.get('extension', '.jinja') # The file's extension (e.g., ".jinja")
+        dir = kwargs.get('dir', '')                   # The path (absolute or relative) of the file's parent directory
 
-		return super(JINJA, cls).__new__(cls, *args, extension=extension, dir=dir)
+        return super(JINJA, cls).__new__(cls, *args, extension=extension, dir=dir)
 
 
-	def load(self):
-		'''
-		Returns a string representing the JINJA file's content.
-		
-		Args:
-			N/A
-			
-		Returns:
-			str: The JINJA file's content.
-		'''
-		
-		with open(str(self)) as f:
-			return Environment(loader=FileSystemLoader(str(self.parent))).from_string(f.read())
+    def load(self):
+        '''
+        Returns a string representing the JINJA file's content.
+        
+        Args:
+            N/A
+            
+        Returns:
+            str: The JINJA file's content.
+        '''
+        
+        with open(str(self)) as f:
+            return Environment(loader=FileSystemLoader(str(self.parent))).from_string(f.read())
 
 
 ### Function Declarations ###
 
 def main():
-	
-	### Read command-line input.
-	
-	# If no command-line arguments are specified, conduct unit test.
-	if len(sys.argv) == 1:
-		test()
-	
-	# Otherwise, proceed as normal.
-	else:
-	
-		# Process command-line input.
-		parser = cli_parser()
-		args = parser.parse_args()
+    
+    ### Read command-line input.
+    
+    # If no command-line arguments are specified, conduct unit test.
+    if len(sys.argv) == 1:
+        test()
+    
+    # Otherwise, proceed as normal.
+    else:
+    
+        # Process command-line input.
+        parser = cli_parser()
+        args = parser.parse_args()
    
-		# Instantiate and load JINJA object.
-		jinja_obj = JINJA(args.template) # Added. 15OCT2018, RLJ
-		template = jinja_obj.load()
-		
-		# Instantiate and load YAML object.
-		yaml_obj = YAML(args.dictionary)
-		template_dict = yaml_obj.load()
-		
-		# Print rendered JINJA template.
-		rendered_str = template.render(template_dict)
-		print(str(rendered_str))
+        # Instantiate and load JINJA object.
+        jinja_obj = JINJA(args.template) # Added. 15OCT2018, RLJ
+        template = jinja_obj.load()
+        
+        # Instantiate and load YAML object.
+        yaml_obj = YAML(args.dictionary)
+        template_dict = yaml_obj.load()
+        
+        # Print rendered JINJA template.
+        rendered_str = template.render(template_dict)
+        print(str(rendered_str))
 
 def test():
-	
-	print(__doc__)
-	print('UNIT TESTS: PASS')
-	print('‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾')
-	print('')
-	
-	#jinja1 = JINJA('example.html', dir='templates') # PASS
-	jinja1 = JINJA('test1.jil', dir='../etc') # PASS
-	print("jinja1 = JINJA('test1.jil', dir='../etc')")
-	print('TEST 1a: jinja1.name = %s' % jinja1.name)
-	print('TEST 1b: jinja1.stem = %s' % jinja1.stem)
-	print('TEST 1c: jinja1.parent = %s' % jinja1.parent)
-	print('TEST 1d: jinja1.suffix = %s' % jinja1.suffix)
-	print('TEST 1e: jinja1=%s' % jinja1)
-	print('')
-	
-	template1 = jinja1.load()
-	
-	yaml1 = YAML('test1', dir='../etc')
-	print('yaml1 = {}'.format(yaml1))
-	print('')
-	
-	template1_dict = yaml1.load()
-	print('template1_dict = {}'.format(template1_dict))
-	print('')
-	
-	rendered1_str = template1.render(template1_dict)
-	print(str(rendered1_str))
-	print('')
+    
+    print(__doc__)
+    print('UNIT TESTS: PASS')
+    print('‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾')
+    print('')
+    
+    #jinja1 = JINJA('example.html', dir='templates') # PASS
+    jinja1 = JINJA('test1.jil', dir='../etc') # PASS
+    print("jinja1 = JINJA('test1.jil', dir='../etc')")
+    print('TEST 1a: jinja1.name = %s' % jinja1.name)
+    print('TEST 1b: jinja1.stem = %s' % jinja1.stem)
+    print('TEST 1c: jinja1.parent = %s' % jinja1.parent)
+    print('TEST 1d: jinja1.suffix = %s' % jinja1.suffix)
+    print('TEST 1e: jinja1=%s' % jinja1)
+    print('')
+    
+    template1 = jinja1.load()
+    
+    yaml1 = YAML('test1', dir='../etc')
+    print('yaml1 = {}'.format(yaml1))
+    print('')
+    
+    template1_dict = yaml1.load()
+    print('template1_dict = {}'.format(template1_dict))
+    print('')
+    
+    rendered1_str = template1.render(template1_dict)
+    print(str(rendered1_str))
+    print('')
+
+    jinja2 = JINJA('test1.jil.jinja', dir='../etc') # PASS
+    print("jinja1 = JINJA('test1.jil', dir='../etc')")
+    print('TEST 1a: jinja1.name = %s' % jinja1.name)
+    print('TEST 1b: jinja1.stem = %s' % jinja1.stem)
+    print('TEST 1c: jinja1.parent = %s' % jinja1.parent)
+    print('TEST 1d: jinja1.suffix = %s' % jinja1.suffix)
+    print('TEST 1e: jinja1=%s' % jinja1)
+    print('')
+        
+    template1 = jinja1.load()
+        
+    yaml1 = YAML('test1', dir='../etc')
+    print('yaml1 = {}'.format(yaml1))
+    print('')
+        
+    template1_dict = yaml1.load()
+    print('template1_dict = {}'.format(template1_dict))
+    print('')
+        
+    rendered1_str = template1.render(template1_dict)
+    print(str(rendered1_str))
+    print('')
 
 
 def cli_parser():
-	
-	### Define command-line interface (CLI) and how to parse it.
-	
-	parser = argparse.ArgumentParser(description='This is a demo script by RLJ.')
-	
-	# Required arguments (except for unit testing)
-	parser.add_argument('-D', '--dictionary', help='Dictionary.', required=True)
-	parser.add_argument('-T', '--template', help='Template.', required=True)
-	
-	return parser
+    
+    ### Define command-line interface (CLI) and how to parse it.
+    
+    parser = argparse.ArgumentParser(description='This is a demo script by RLJ.')
+    
+    # Required arguments (except for unit testing)
+    parser.add_argument('-D', '--dictionary', help='Dictionary.', required=True)
+    parser.add_argument('-T', '--template', help='Template.', required=True)
+    
+    return parser
 
 
 ### Main ###
 
 if __name__ == "__main__":
-	#pass
-	
-	main()
+    #pass
+    
+    main()

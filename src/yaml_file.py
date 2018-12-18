@@ -81,93 +81,93 @@ from file import File
 ### Class Declaration ###
 
 class YAML(File):
-	'''
-	The class "YAML", a subclass of "File":
-		* Encapulates YAML file metadata;
-		* Handles YAML file operations.
-	
-	Attributes:
-		All attributes are inherited from the parent class "File".
-	'''
+    '''
+    The class "YAML", a subclass of "File":
+        * Encapulates YAML file metadata;
+        * Handles YAML file operations.
+    
+    Attributes:
+        All attributes are inherited from the parent class "File".
+    '''
 
-	def __new__(cls, *args, **kwargs):
-	
-		'''
-		The constructor for the class "YAML" that exists solely for creating the object.
-		
-		Parameters:
-			args (list): A comma-separated list of arguments representing parts of path.
-			kwargs (dict): An optional comma-separated list of key/value pairs.
-		
-		Returns:
-			YAML: An uninitialized "YAML" class instance.
-		'''
+    def __new__(cls, *args, **kwargs):
+    
+        '''
+        The constructor for the class "YAML" that exists solely for creating the object.
+        
+        Parameters:
+            args (list): A comma-separated list of arguments representing parts of path.
+            kwargs (dict): An optional comma-separated list of key/value pairs.
+        
+        Returns:
+            YAML: An uninitialized "YAML" class instance.
+        '''
 
-		extension = kwargs.get('extension', '.yaml') # The file's extension (e.g., ".yaml")
-		dir = kwargs.get('dir', '')                  # The path (absolute or relative) of the file's parent directory
+        extension = kwargs.get('extension', '.yaml') # The file's extension (e.g., ".yaml")
+        dir = kwargs.get('dir', '')                  # The path (absolute or relative) of the file's parent directory
 
-		return super(YAML, cls).__new__(cls, *args, extension=extension, dir=dir)
+        return super(YAML, cls).__new__(cls, *args, extension=extension, dir=dir)
 
 
-	def load(self):
-		'''
-		Returns a string representing the YAML file's content.
-		
-		Parameters:
-			N/A
-			
-		Returns:
-			str: The YAML file's content.
-		'''
-		
-		dict = yaml.load(open(str(self), 'r'))
-		
-		return dict
+    def load(self):
+        '''
+        Returns a string representing the YAML file's content.
+        
+        Parameters:
+            N/A
+            
+        Returns:
+            str: The YAML file's content.
+        '''
+        
+        dict = yaml.load(open(str(self), 'r'))
+        
+        return dict
 
 
 ### Main ###
 
 if __name__ == "__main__":
-	#pass
-	
-	from argparse import Namespace
-	
-	print(__doc__)
-	print('UNIT TESTS: PASS')
-	print('‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾')
-	print('')
-	
-	yaml1 = YAML('test1', dir='../etc')
-	print("yaml1 = YAML('test1', dir='../etc')")
-	print("TEST 1a: yaml1.name=%s" % yaml1.name)
-	print("TEST 1b: yaml1.stem=%s" % yaml1.stem)
-	print("TEST 1c: yaml1.parent=%s" % yaml1.parent)
-	print("TEST 1d: yaml1.suffix=%s" % yaml1.suffix)
-	print("TEST 1e: yaml1=%s" % yaml1)
-	print("")
+    #pass
+    
+    from argparse import Namespace
+    
+    print(__doc__)
+    print('UNIT TESTS: PASS')
+    print('‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾')
+    print('')
+    
+    yaml1 = YAML('test1', dir='../etc')
+    print("yaml1 = YAML('test1', dir='../etc')")
+    print("TEST 1a: yaml1.name=%s" % yaml1.name)
+    print("TEST 1b: yaml1.stem=%s" % yaml1.stem)
+    print("TEST 1c: yaml1.parent=%s" % yaml1.parent)
+    print("TEST 1d: yaml1.suffix=%s" % yaml1.suffix)
+    print("TEST 1e: yaml1=%s" % yaml1)
+    print("")
 
-	yaml1_dict = yaml1.load()
-	
-	# PASS
-	#print(yaml1_dict["SectionA"])
-	#print(yaml1_dict["SectionA"]["rowA1"])
-	#print(yaml1_dict["SectionA"]["rowA2"])
-	#print(yaml1_dict["SectionB"])
-	#print(yaml1_dict["SectionB"]["rowB1"])
-	#print(yaml1_dict["SectionB"]["rowB2"])
-	
-	print(yaml1_dict)
-	
-	print(yaml1_dict["SectionA"])
-	print(Namespace(**yaml1_dict).SectionA)
-	
-	print(yaml1_dict["SectionA"]["rowA1"])
-	print(Namespace(**(Namespace(**yaml1_dict).SectionA)).rowA1)
-	
-	#print(yaml1_dict.SectionA)
-	#print(yaml1_dict)
-	#print(yaml1_dict.SectionA["rowA1"])
-	#print(yaml1_dict.SectionA.rowA2)
-	#print(yaml1_dict.SectionB)
-	#print(yaml1_dict.SectionB.rowB1)
-	#print(yaml1_dict.SectionB.rowB2)
+    yaml1_dict = yaml1.load()
+    
+    # PASS
+    #print(yaml1_dict["SectionA"])
+    #print(yaml1_dict["SectionA"]["rowA1"])
+    #print(yaml1_dict["SectionA"]["rowA2"])
+    #print(yaml1_dict["SectionB"])
+    #print(yaml1_dict["SectionB"]["rowB1"])
+    #print(yaml1_dict["SectionB"]["rowB2"])
+    
+    print(yaml1_dict)
+    
+    print(yaml1_dict["SectionA"])
+    print(Namespace(**yaml1_dict).SectionA)
+    
+    print(yaml1_dict["SectionA"]["rowA1"])
+    print(Namespace(**(Namespace(**yaml1_dict).SectionA)).rowA1)
+    
+    #print(yaml1_dict.SectionA)
+    #print(yaml1_dict)
+    #print(yaml1_dict.SectionA["rowA1"])
+    #print(yaml1_dict.SectionA.rowA2)
+    #print(yaml1_dict.SectionB)
+    #print(yaml1_dict.SectionB.rowB1)
+    #print(yaml1_dict.SectionB.rowB2)
