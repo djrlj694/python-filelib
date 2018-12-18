@@ -22,7 +22,7 @@ from file import File
 
 file1 = File('file1.csv', dir='~')
 print('TEST 1a: file1.name = %s' % file1.name)
-print('TEST 1b: file1.stem = %s % file1.stem)
+print('TEST 1b: file1.stem = %s' % file1.stem)
 print('TEST 1c: file1.parent = %s' % file1.parent)
 print('TEST 1d: file1.suffix = %s' % file1.suffix)
 print('TEST 1e: file1 = %s' % file1)
@@ -100,10 +100,9 @@ class File(type(Path())):
 
         name = args[-1]
         name_part = name.split('/')[-1] or name.split('\\')[-1]
-        name_parts = name_part.split('.')
-        name_extension = '.' + '.'.join(name_parts[1:len(name_parts)])
-        
-        new_name = name if extension == '' or extension == name_extension else name + extension
+        name_stem = name_part.split('.')[0]
+        name_extension = name_part[len(name_stem):]
+        new_name = name if name_extension.endswith(extension) else name + extension
         #print('File(): new_name = %s, name = %s, extension = %s, name_extension = %s' % (new_name, name, extension, name_extension))
         
         return super(File, cls).__new__(cls, dir, new_name, **kwargs)
@@ -212,6 +211,15 @@ def test():
     print('TEST 7c: file7b.parent= %s' % file7b.parent)
     print('TEST 7d: file7b.suffix= %s' % file7b.suffix)
     print('TEST 7e: file7b= %s' % file7b)
+    print('')
+
+    file8 = File('file8.json.jinja', extension='.jinja', dir='.')
+    print("file8 = File('file8.json.jinja', extension='.jinja', dir='.')")
+    print('TEST 8a: file8.name = %s' % file8.name)
+    print('TEST 8b: file8.stem = %s' % file8.stem)
+    print('TEST 8c: file8.parent = %s' % file8.parent)
+    print('TEST 8d: file8.suffix = %s' % file8.suffix)
+    print('TEST 8e: file8 = %s' % file8)
     print('')
 
 def cli_parser():
