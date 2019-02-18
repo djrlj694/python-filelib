@@ -18,9 +18,7 @@ from file import File
 
 ## Documentation
 
-Documentation for the project can be found [here](https://djrlj694.github.io/python-filelib/).
-
-Information on how the documentation was generated and hosted can be found in the blog: [Generate & Host your iOS Documentation](https://medium.com/@jonathan2457/generate-host-your-ios-documentation-39e21b382ce8).
+*Under construction.*
 
 ## Known issues
 
