@@ -20,7 +20,7 @@ from file import File
 
 *Under construction.*
 
-## Known issues
+## Known Issues
 
 Currently, there are no known issues.  If you discover any, please kindly submit a [pull request](CONTRIBUTING.md).
 
