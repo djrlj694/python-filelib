@@ -4,7 +4,7 @@ A Python module for working with files that inherits from the `pathlib` module's
 
 ## Usage
 
-Add the following to your Swift source code file:
+Add the following to your Python source code file:
 
 ```python
 from file import File
