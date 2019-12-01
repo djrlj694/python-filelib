@@ -39,17 +39,16 @@ REFERENCES
 6. https://stackoverflow.com/questions/18090672/convert-dictionary-entries-into-variables-python
 '''
 
-__author__ = 'Robert (Bob) L. Jones'
-__coauthor__ = 'N/A'
-__copyright__ = 'Copyright 2018, YAML'
-__credits__ = ['Robert (Bob) L. Jones']
-__license__ = 'MIT'
-__version__ = '0.0.1'
-__maintainer__ = 'Robert (Bob) L. Jones'
-__status__ = 'Development'
-__created_date__= 'Dec 17, 2018'
-__modified_date__= 'Dec 17, 2018'
+__version__ = '0.0.0'
 
+__author__ = 'Robert (Bob) L. Jones'
+__credits__ = ['Robert (Bob) L. Jones']
+
+__copyright__ = 'Copyright 2019, YAML'
+__license__ = 'MIT'
+
+__created_date__= 'Dec 17, 2018'
+__modified_date__= 'Dec 01, 2019'
 
 #ARGUMENTS:
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾    
