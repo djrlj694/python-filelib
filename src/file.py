@@ -44,17 +44,16 @@ REFERENCES
 13. https://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
 '''
 
-__author__ = 'Robert (Bob) L. Jones'
-__coauthor__ = 'N/A'
-__copyright__ = 'Copyright 2018, File'
-__credits__ = ['Robert (Bob) L. Jones']
-__license__ = 'MIT'
-__version__ = '0.0.1'
-__maintainer__ = 'Robert (Bob) L. Jones'
-__status__ = 'Development'
-__created_date__= 'Dec 17, 2018'
-__modified_date__= 'Dec 17, 2018'
+__version__ = '0.0.0'
 
+__author__ = 'Robert (Bob) L. Jones'
+__credits__ = ['Robert (Bob) L. Jones']
+
+__copyright__ = 'Copyright 2019, File'
+__license__ = 'MIT'
+
+__created_date__= 'Dec 17, 2018'
+__modified_date__= 'Dec 01, 2019'
 
 ### Libraries ###
 
